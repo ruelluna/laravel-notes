@@ -23,8 +23,6 @@ trait AuthoredNotes
 
     /**
      * Relation to Many notes.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function authoredNotes(): HasMany
     {

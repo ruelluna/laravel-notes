@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\LaravelNotes\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Trait     HasOneNote
@@ -22,10 +23,8 @@ trait HasOneNote
 
     /**
      * Relation to ONE note.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    public function note()
+    public function note(): MorphOne
     {
         return $this->morphOne(config('notes.notes.model'), 'noteable');
     }
@@ -37,14 +36,8 @@ trait HasOneNote
 
     /**
      * Create a note.
-     *
-     * @param  string                                    $content
-     * @param  \Illuminate\Database\Eloquent\Model|null  $author
-     * @param  bool                                      $reload
-     *
-     * @return \Arcanedev\LaravelNotes\Models\Note
      */
-    public function createNote($content, $author = null, $reload = true)
+    public function createNote(string $content, ?Model $author = null, bool $reload = true): \Arcanedev\LaravelNotes\Models\Note
     {
         if ($this->note)
             $this->note->delete();
@@ -62,14 +55,8 @@ trait HasOneNote
 
     /**
      * Update a note.
-     *
-     * @param  string                                    $content
-     * @param  \Illuminate\Database\Eloquent\Model|null  $author
-     * @param  bool                                      $reload
-     *
-     * @return bool
      */
-    public function updateNote($content, Model $author = null, $reload = true)
+    public function updateNote(string $content, ?Model $author = null, bool $reload = true): bool
     {
         $updated = $this->note->update(
             $this->prepareNoteAttributes($content, $author)
@@ -87,13 +74,8 @@ trait HasOneNote
 
     /**
      * Prepare note attributes.
-     *
-     * @param  string                                    $content
-     * @param  \Illuminate\Database\Eloquent\Model|null  $author
-     *
-     * @return array
      */
-    protected function prepareNoteAttributes($content, Model $author = null)
+    protected function prepareNoteAttributes(string $content, ?Model $author = null): array
     {
         return [
             'author_id' => is_null($author) ? $this->getCurrentAuthorId() : $author->getKey(),
@@ -103,10 +85,8 @@ trait HasOneNote
 
     /**
      * Get the current author's id.
-     *
-     * @return int|null
      */
-    protected function getCurrentAuthorId()
+    protected function getCurrentAuthorId(): ?int
     {
         return null;
     }

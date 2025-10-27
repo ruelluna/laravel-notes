@@ -38,14 +38,8 @@ trait HasManyNotes
 
     /**
      * Create a note.
-     *
-     * @param  string                                    $content
-     * @param  \Illuminate\Database\Eloquent\Model|null  $author
-     * @param  bool                                      $reload
-     *
-     * @return \Arcanedev\LaravelNotes\Models\Note
      */
-    public function createNote($content, $author = null, $reload = true)
+    public function createNote(string $content, ?Model $author = null, bool $reload = true): \Arcanedev\LaravelNotes\Models\Note
     {
         /** @var \Arcanedev\LaravelNotes\Models\Note $note */
         $note = $this->notes()->create(
@@ -66,12 +60,8 @@ trait HasManyNotes
 
     /**
      * Retrieve a note by its ID.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findNote($id)
+    public function findNote(int $id): ?\Illuminate\Database\Eloquent\Model
     {
         return $this->notes()->find($id);
     }
@@ -83,13 +73,8 @@ trait HasManyNotes
 
     /**
      * Prepare note attributes.
-     *
-     * @param  string                                    $content
-     * @param  \Illuminate\Database\Eloquent\Model|null  $author
-     *
-     * @return array
      */
-    protected function prepareNoteAttributes($content, Model $author = null)
+    protected function prepareNoteAttributes(string $content, ?Model $author = null): array
     {
         return [
             'author_id' => is_null($author) ? $this->getCurrentAuthorId() : $author->getKey(),
@@ -99,10 +84,8 @@ trait HasManyNotes
 
     /**
      * Get the current author's id.
-     *
-     * @return int|null
      */
-    protected function getCurrentAuthorId()
+    protected function getCurrentAuthorId(): ?int
     {
         return null;
     }

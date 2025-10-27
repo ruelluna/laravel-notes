@@ -20,7 +20,7 @@ return [
 
     'authors' => [
         'table' => 'users',
-        'model' => App\User::class,
+        'model' => App\Models\User::class,
     ],
 
     'notes' => [

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Arcanedev\LaravelNotes\Models;
 
 use Arcanedev\Support\Database\PrefixedModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Arr;
 
 /**
@@ -33,7 +35,7 @@ class Note extends PrefixedModel
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
         'content',
@@ -43,7 +45,7 @@ class Note extends PrefixedModel
     /**
      * The attributes excluded from the model's JSON form.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'noteable_id',
@@ -53,7 +55,7 @@ class Note extends PrefixedModel
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'id'          => 'integer',
@@ -89,20 +91,16 @@ class Note extends PrefixedModel
 
     /**
      * The noteable relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function noteable()
+    public function noteable(): MorphTo
     {
         return $this->morphTo();
     }
 
     /**
      * The author relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(config('notes.authors.model'));
     }
