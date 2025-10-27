@@ -13,9 +13,15 @@
     ],
     "type":    "library",
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ruelluna/archandev-support"
+        }
+    ],
     "require": {
         "php": "^8.2",
-        "arcanedev/support": "^11.0"
+        "arcanedev/support": "dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
