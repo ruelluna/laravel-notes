@@ -1,17 +1,17 @@
 {
-    "name":        "arcanedev/laravel-notes",
+    "name": "arcanedev/laravel-notes",
     "description": "Provides the ability to add notes to your Eloquent models in Laravel.",
-    "keywords":    ["arcanedev", "laravel", "notes", "noteable"],
-    "homepage":    "https://github.com/ARCANEDEV/LaravelNotes",
+    "keywords": ["arcanedev", "laravel", "notes", "noteable"],
+    "homepage": "https://github.com/ARCANEDEV/LaravelNotes",
     "authors": [
         {
-            "name":     "ARCANEDEV",
-            "email":    "arcanedev.maroc@gmail.com",
+            "name": "ARCANEDEV",
+            "email": "arcanedev.maroc@gmail.com",
             "homepage": "https://github.com/arcanedev-maroc",
-            "role":     "Developer"
+            "role": "Developer"
         }
     ],
-    "type":    "library",
+    "type": "library",
     "license": "MIT",
     "repositories": [
         {
@@ -20,15 +20,15 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "arcanedev/support": "dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "mockery/mockery": "^1.6",
-        "laravel/framework": "^12.0",
-        "orchestra/testbench-core": "^9.0",
-        "phpunit/phpunit": "^11.0"
+        "laravel/framework": "^12.0|^13.0",
+        "orchestra/testbench-core": "^9.0|^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0"
     },
     "autoload": {
         "psr-4": {
